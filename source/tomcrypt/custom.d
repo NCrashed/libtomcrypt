@@ -443,9 +443,9 @@ version(LTC_PTHREAD)
 {
     import core.sys.posix.pthread;
     
-    mixin template LTC_MUTEX_GLOBAL(TS...) {alias x = TS[0]; mixin("pthread_mutex_t "~x~" = PTHREAD_MUTEX_INITIALIZER;");}
-    mixin template LTC_MUTEX_PROTO(TS...)  {alias x = TS[0]; mixin("extern pthread_mutex_t "~x~";");}
-    mixin template LTC_MUTEX_TYPE(TS...)   {alias x = TS[0]; mixin("pthread_mutex_t "~x~";");}
+    string LTC_MUTEX_GLOBAL(string x) {return "pthread_mutex_t "~x~" = PTHREAD_MUTEX_INITIALIZER;";}
+    string LTC_MUTEX_PROTO(string x)  {return "extern pthread_mutex_t "~x~";";}
+    string LTC_MUTEX_TYPE(string x)   {return "pthread_mutex_t "~x~";";}
     void  LTC_MUTEX_INIT(pthread_mutex_t x) { pthread_mutex_init(x, null); }
     alias LTC_MUTEX_LOCK = pthread_mutex_lock;
     alias LTC_MUTEX_UNLOCK = pthread_mutex_unlock;
@@ -455,9 +455,9 @@ else
     void tcl_nothing(T...)(T args) {}
     
     /* default no functions */
-    mixin template LTC_MUTEX_GLOBAL(TS...) {}
-    mixin template LTC_MUTEX_PROTO(TS...) {}
-    mixin template LTC_MUTEX_TYPE(TS...) {}
+    string LTC_MUTEX_GLOBAL(string x) {return "";}
+    string LTC_MUTEX_PROTO(string x) {return "";}
+    string LTC_MUTEX_TYPE(string x) {return "";}
     alias LTC_MUTEX_INIT = tcl_nothing;
     alias LTC_MUTEX_LOCK = tcl_nothing;
     alias LTC_MUTEX_UNLOCK = tcl_nothing;
