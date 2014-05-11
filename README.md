@@ -5,6 +5,6 @@ libtomcrypt D interface
 
 Library version: 1.17
 
-Status: Is not ready
+Status: All headers files and macros (except asm: no need for bindings) are ported, but not checked
 
 License: `"LibTomCrypt is public domain.  As should all quality software be."`
