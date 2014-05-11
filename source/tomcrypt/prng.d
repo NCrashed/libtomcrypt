@@ -94,49 +94,49 @@ struct ltc_prng_descriptor
         @param prng   [_out] The state to initialize
         @return CRYPT_OK if successful
     */
-    int function(prng_state *prng) start;
+    int function(prng_state *prng) nothrow start;
     /** Add entropy to the PRNG
         @param _in         The entropy
         @param inlen      Length of the entropy (octets)\
         @param prng       The PRNG state
         @return CRYPT_OK if successful
     */
-    int function(const ubyte* _in, c_ulong inlen, prng_state *prng) add_entropy;
+    int function(const ubyte* _in, c_ulong inlen, prng_state *prng) nothrow add_entropy;
     /** Ready a PRNG state to read from
         @param prng       The PRNG state to ready
         @return CRYPT_OK if successful
     */
-    int function(prng_state *prng) ready;
+    int function(prng_state *prng) nothrow ready;
     /** Read from the PRNG
         @param _out     [_out] Where to store the data
         @param outlen  Length of data desired (octets)
         @param prng    The PRNG state to read from
         @return Number of octets read
     */
-    c_ulong function(ubyte* _out, c_ulong outlen, prng_state *prng) read;
+    c_ulong function(ubyte* _out, c_ulong outlen, prng_state *prng) nothrow read;
     /** Terminate a PRNG state
         @param prng   The PRNG state to terminate
         @return CRYPT_OK if successful
     */
-    int function(prng_state *prng) done;
+    int function(prng_state *prng) nothrow done;
     /** Export a PRNG state  
         @param _out     [_out] The destination for the state
         @param outlen  [_in/_out] The max size and resulting size of the PRNG state
         @param prng    The PRNG to export
         @return CRYPT_OK if successful
     */
-    int function(ubyte* _out, c_ulong *outlen, prng_state *prng) pexport;
+    int function(ubyte* _out, c_ulong *outlen, prng_state *prng) nothrow pexport;
     /** Import a PRNG state
         @param _in      The data to import
         @param inlen   The length of the data to import (octets)
         @param prng    The PRNG to initialize/import
         @return CRYPT_OK if successful
     */
-    int function(const ubyte* _in, c_ulong inlen, prng_state *prng) pimport;
+    int function(const ubyte* _in, c_ulong inlen, prng_state *prng) nothrow pimport;
     /** Self-test the PRNG
         @return CRYPT_OK if successful, CRYPT_NOP if self-testing has been disabled
     */
-    int function() test;
+    int function() nothrow test;
 }
 
 extern __gshared ltc_prng_descriptor[] prng_descriptor;

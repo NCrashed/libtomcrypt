@@ -452,36 +452,36 @@ struct ltc_cipher_descriptor
       @param skey        [out] The destination of the scheduled key
       @return CRYPT_OK if successful
    */
-   int  function(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey) setup;
+   int  function(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey) nothrow setup;
    /** Encrypt a block
       @param pt      The plaintext
       @param ct      [out] The ciphertext
       @param skey    The scheduled key
       @return CRYPT_OK if successful
    */
-   int function(const ubyte *pt, ubyte *ct, symmetric_key *skey) ecb_encrypt;
+   int function(const ubyte *pt, ubyte *ct, symmetric_key *skey) nothrow ecb_encrypt;
    /** Decrypt a block
       @param ct      The ciphertext
       @param pt      [out] The plaintext
       @param skey    The scheduled key
       @return CRYPT_OK if successful
    */
-   int function(const ubyte *ct, ubyte *pt, symmetric_key *skey) ecb_decrypt;
+   int function(const ubyte *ct, ubyte *pt, symmetric_key *skey) nothrow ecb_decrypt;
    /** Test the block cipher
        @return CRYPT_OK if successful, CRYPT_NOP if self-testing has been disabled
    */
-   int function() test;
+   int function() nothrow test;
 
    /** Terminate the context 
       @param skey    The scheduled key
    */
-   void function(symmetric_key *skey) done;      
+   void function(symmetric_key *skey) nothrow done;      
 
    /** Determine a key size
        @param keysize    [in/out] The size of the key desired and the suggested size
        @return CRYPT_OK if successful
    */
-   int  function(int *keysize) keysize;
+   int  function(int *keysize) nothrow keysize;
 
 /** Accelerators **/
    /** Accelerated ECB encryption 
@@ -491,7 +491,7 @@ struct ltc_cipher_descriptor
        @param skey    The scheduled key context
        @return CRYPT_OK if successful
    */
-   int function(const ubyte *pt, ubyte *ct, c_ulong blocks, symmetric_key *skey) accel_ecb_encrypt;
+   int function(const ubyte *pt, ubyte *ct, c_ulong blocks, symmetric_key *skey) nothrow accel_ecb_encrypt;
 
    /** Accelerated ECB decryption 
        @param pt      Plaintext
@@ -500,7 +500,7 @@ struct ltc_cipher_descriptor
        @param skey    The scheduled key context
        @return CRYPT_OK if successful
    */
-   int function(const ubyte *ct, ubyte *pt, c_ulong blocks, symmetric_key *skey) accel_ecb_decrypt;
+   int function(const ubyte *ct, ubyte *pt, c_ulong blocks, symmetric_key *skey) nothrow accel_ecb_decrypt;
 
    /** Accelerated CBC encryption 
        @param pt      Plaintext
@@ -510,7 +510,7 @@ struct ltc_cipher_descriptor
        @param skey    The scheduled key context
        @return CRYPT_OK if successful
    */
-   int function(const ubyte *pt, ubyte *ct, c_ulong blocks, ubyte *IV, symmetric_key *skey) accel_cbc_encrypt;
+   int function(const ubyte *pt, ubyte *ct, c_ulong blocks, ubyte *IV, symmetric_key *skey) nothrow accel_cbc_encrypt;
 
    /** Accelerated CBC decryption 
        @param pt      Plaintext
@@ -520,7 +520,7 @@ struct ltc_cipher_descriptor
        @param skey    The scheduled key context
        @return CRYPT_OK if successful
    */
-   int function(const ubyte *ct, ubyte *pt, c_ulong blocks, ubyte *IV, symmetric_key *skey) accel_cbc_decrypt;
+   int function(const ubyte *ct, ubyte *pt, c_ulong blocks, ubyte *IV, symmetric_key *skey) nothrow accel_cbc_decrypt;
 
    /** Accelerated CTR encryption 
        @param pt      Plaintext
@@ -531,7 +531,7 @@ struct ltc_cipher_descriptor
        @param skey    The scheduled key context
        @return CRYPT_OK if successful
    */
-   int function(const ubyte *pt, ubyte *ct, c_ulong blocks, ubyte *IV, int mode, symmetric_key *skey) accel_ctr_encrypt;
+   int function(const ubyte *pt, ubyte *ct, c_ulong blocks, ubyte *IV, int mode, symmetric_key *skey) nothrow accel_ctr_encrypt;
 
    /** Accelerated LRW 
        @param pt      Plaintext
@@ -542,7 +542,7 @@ struct ltc_cipher_descriptor
        @param skey    The scheduled key context
        @return CRYPT_OK if successful
    */
-   int function(const ubyte *pt, ubyte *ct, c_ulong blocks, ubyte *IV, const ubyte *tweak, symmetric_key *skey) accel_lrw_encrypt;
+   int function(const ubyte *pt, ubyte *ct, c_ulong blocks, ubyte *IV, const ubyte *tweak, symmetric_key *skey) nothrow accel_lrw_encrypt;
 
    /** Accelerated LRW 
        @param ct      Ciphertext
@@ -553,7 +553,7 @@ struct ltc_cipher_descriptor
        @param skey    The scheduled key context
        @return CRYPT_OK if successful
    */
-   int function(const ubyte *ct, ubyte *pt, c_ulong blocks, ubyte *IV, const ubyte *tweak, symmetric_key *skey) accel_lrw_decrypt;
+   int function(const ubyte *ct, ubyte *pt, c_ulong blocks, ubyte *IV, const ubyte *tweak, symmetric_key *skey) nothrow accel_lrw_decrypt;
 
    /** Accelerated CCM packet (one-shot)
        @param key        The secret key to use
@@ -579,7 +579,7 @@ struct ltc_cipher_descriptor
              ubyte *pt,     c_ulong ptlen,
              ubyte *ct,
              ubyte *tag,    c_ulong *taglen,
-                       int  direction)          accel_ccm_memory;
+                       int  direction) nothrow accel_ccm_memory;
 
    /** Accelerated GCM packet (one shot)
        @param key        The secret key
@@ -603,7 +603,7 @@ struct ltc_cipher_descriptor
              ubyte *pt,     c_ulong ptlen,
              ubyte *ct, 
              ubyte *tag,    c_ulong *taglen,
-                       int direction)           accel_gcm_memory;
+                       int direction) nothrow accel_gcm_memory;
 
    /** Accelerated one shot LTC_OMAC 
        @param key            The secret key
@@ -617,7 +617,7 @@ struct ltc_cipher_descriptor
    int function(
        const ubyte *key, c_ulong keylen,
        const ubyte *_in,  c_ulong inlen,
-             ubyte *_out, c_ulong *outlen)       omac_memory;
+             ubyte *_out, c_ulong *outlen) nothrow omac_memory;
 
    /** Accelerated one shot XCBC 
        @param key            The secret key
@@ -631,7 +631,7 @@ struct ltc_cipher_descriptor
    int function(
        const ubyte *key, c_ulong keylen,
        const ubyte *_in,  c_ulong inlen,
-             ubyte *_out, c_ulong *outlen)       xcbc_memory;
+             ubyte *_out, c_ulong *outlen) nothrow xcbc_memory;
 
    /** Accelerated one shot F9 
        @param key            The secret key
@@ -646,7 +646,7 @@ struct ltc_cipher_descriptor
    int function(
        const ubyte *key, c_ulong keylen,
        const ubyte *_in,  c_ulong inlen,
-             ubyte *_out, c_ulong *outlen)       f9_memory;
+             ubyte *_out, c_ulong *outlen) nothrow f9_memory;
 }
 
 extern __gshared ltc_cipher_descriptor[] cipher_descriptor;

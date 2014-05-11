@@ -241,29 +241,29 @@ struct ltc_hash_descriptor
       @param hash   The hash to initialize
       @return CRYPT_OK if successful
     */
-    int function(hash_state *hash) init;
+    int function(hash_state *hash) nothrow init;
     /** Process a block of data 
       @param hash   The hash state
       @param in     The data to hash
       @param inlen  The length of the data (octets)
       @return CRYPT_OK if successful
     */
-    int function(hash_state *hash, const ubyte *_in, c_ulong inlen) process;
+    int function(hash_state *hash, const ubyte *_in, c_ulong inlen) nothrow process;
     /** Produce the digest and store it
       @param hash   The hash state
       @param out    [out] The destination of the digest
       @return CRYPT_OK if successful
     */
-    int function(hash_state *hash, ubyte *_out) done;
+    int function(hash_state *hash, ubyte *_out) nothrow done;
     /** Self-test
       @return CRYPT_OK if successful, CRYPT_NOP if self-tests have been disabled
     */
-    int function() test;
+    int function() nothrow test;
 
     /* accelerated hmac callback: if you need to-do multiple packets just use the generic hmac_memory and provide a hash callback */
     int  function(     const ubyte *key, c_ulong  keylen,
                        const ubyte *_in,  c_ulong  inlen, 
-                             ubyte *_out, c_ulong *outlen) hmac_block;
+                             ubyte *_out, c_ulong *outlen) nothrow hmac_block;
 
 } 
 extern __gshared ltc_hash_descriptor[] hash_descriptor;
