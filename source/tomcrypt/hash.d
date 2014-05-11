@@ -5,6 +5,7 @@ import core.stdc.config;
 import core.stdc.stdio;
 
 import tomcrypt.custom;
+import tomcrypt.tomcrypt;
 
 extern(C) nothrow:
 
@@ -273,7 +274,7 @@ version(LTC_CHC_HASH)
     int chc_init(hash_state * md);
     int chc_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int chc_done(hash_state * md, ubyte *hash);
-    int chc_test(void);
+    int chc_test();
     extern __gshared const ltc_hash_descriptor chc_desc;
 }
 
@@ -282,7 +283,7 @@ version(LTC_WHIRLPOOL)
     int whirlpool_init(hash_state * md);
     int whirlpool_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int whirlpool_done(hash_state * md, ubyte *hash);
-    int whirlpool_test(void);
+    int whirlpool_test();
     extern __gshared const ltc_hash_descriptor whirlpool_desc;
 }
 
@@ -291,7 +292,7 @@ version(LTC_SHA512)
     int sha512_init(hash_state * md);
     int sha512_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int sha512_done(hash_state * md, ubyte *hash);
-    int sha512_test(void);
+    int sha512_test();
     extern __gshared const ltc_hash_descriptor sha512_desc;
 }
 
@@ -306,7 +307,7 @@ version(LTC_SHA384)
     int sha384_init(hash_state * md);
     alias sha384_process = sha512_process;
     int sha384_done(hash_state * md, ubyte *hash);
-    int sha384_test(void);
+    int sha384_test();
     extern __gshared const ltc_hash_descriptor sha384_desc;
 }
 
@@ -315,7 +316,7 @@ version(LTC_SHA256)
     int sha256_init(hash_state * md);
     int sha256_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int sha256_done(hash_state * md, ubyte *hash);
-    int sha256_test(void);
+    int sha256_test();
     extern __gshared const ltc_hash_descriptor sha256_desc;
 
     version(LTC_SHA224)
@@ -329,7 +330,7 @@ version(LTC_SHA256)
         int sha224_init(hash_state * md);
         alias sha224_process = sha256_process;
         int sha224_done(hash_state * md, ubyte *hash);
-        int sha224_test(void);
+        int sha224_test();
         extern __gshared const ltc_hash_descriptor sha224_desc;
     }
 }
@@ -339,7 +340,7 @@ version(LTC_SHA1)
     int sha1_init(hash_state * md);
     int sha1_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int sha1_done(hash_state * md, ubyte *hash);
-    int sha1_test(void);
+    int sha1_test();
     extern __gshared const ltc_hash_descriptor sha1_desc;
 }
 
@@ -348,7 +349,7 @@ version(LTC_MD5)
     int md5_init(hash_state * md);
     int md5_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int md5_done(hash_state * md, ubyte *hash);
-    int md5_test(void);
+    int md5_test();
     extern __gshared const ltc_hash_descriptor md5_desc;
 }
 
@@ -357,7 +358,7 @@ version(LTC_MD4)
     int md4_init(hash_state * md);
     int md4_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int md4_done(hash_state * md, ubyte *hash);
-    int md4_test(void);
+    int md4_test();
     extern __gshared const ltc_hash_descriptor md4_desc;
 }
 
@@ -366,7 +367,7 @@ version(LTC_MD2)
     int md2_init(hash_state * md);
     int md2_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int md2_done(hash_state * md, ubyte *hash);
-    int md2_test(void);
+    int md2_test();
     extern __gshared const ltc_hash_descriptor md2_desc;
 }
 
@@ -375,7 +376,7 @@ version(LTC_TIGER)
     int tiger_init(hash_state * md);
     int tiger_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int tiger_done(hash_state * md, ubyte *hash);
-    int tiger_test(void);
+    int tiger_test();
     extern __gshared const ltc_hash_descriptor tiger_desc;
 }
 
@@ -384,7 +385,7 @@ version(LTC_RIPEMD128)
     int rmd128_init(hash_state * md);
     int rmd128_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int rmd128_done(hash_state * md, ubyte *hash);
-    int rmd128_test(void);
+    int rmd128_test();
     extern __gshared const ltc_hash_descriptor rmd128_desc;
 }
 
@@ -393,7 +394,7 @@ version(LTC_RIPEMD160)
     int rmd160_init(hash_state * md);
     int rmd160_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int rmd160_done(hash_state * md, ubyte *hash);
-    int rmd160_test(void);
+    int rmd160_test();
     extern __gshared const ltc_hash_descriptor rmd160_desc;
 }
 
@@ -402,7 +403,7 @@ version(LTC_RIPEMD256)
     int rmd256_init(hash_state * md);
     int rmd256_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int rmd256_done(hash_state * md, ubyte *hash);
-    int rmd256_test(void);
+    int rmd256_test();
     extern __gshared const ltc_hash_descriptor rmd256_desc;
 }
 
@@ -411,7 +412,7 @@ version(LTC_RIPEMD320)
     int rmd320_init(hash_state * md);
     int rmd320_process(hash_state * md, const ubyte *_in, c_ulong inlen);
     int rmd320_done(hash_state * md, ubyte *hash);
-    int rmd320_test(void);
+    int rmd320_test();
     extern __gshared const ltc_hash_descriptor rmd320_desc;
 }
 

@@ -6,6 +6,7 @@
 module tomcrypt.cipher;
 
 import tomcrypt.custom;
+import tomcrypt.tomcrypt;
 import core.stdc.config;
 
 extern(C) nothrow:
@@ -655,7 +656,7 @@ version(LTC_BLOWFISH)
     int blowfish_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int blowfish_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int blowfish_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int blowfish_test(void);
+    int blowfish_test();
     void blowfish_done(symmetric_key *skey);
     int blowfish_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor blowfish_desc;
@@ -666,7 +667,7 @@ version(LTC_RC5)
     int rc5_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int rc5_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int rc5_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int rc5_test(void);
+    int rc5_test();
     void rc5_done(symmetric_key *skey);
     int rc5_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor rc5_desc;
@@ -677,7 +678,7 @@ version(LTC_RC6)
     int rc6_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int rc6_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int rc6_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int rc6_test(void);
+    int rc6_test();
     void rc6_done(symmetric_key *skey);
     int rc6_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor rc6_desc;
@@ -688,7 +689,7 @@ version(LTC_RC2)
     int rc2_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int rc2_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int rc2_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int rc2_test(void);
+    int rc2_test();
     void rc2_done(symmetric_key *skey);
     int rc2_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor rc2_desc;
@@ -699,7 +700,7 @@ version(LTC_SAFERP)
     int saferp_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int saferp_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int saferp_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int saferp_test(void);
+    int saferp_test();
     void saferp_done(symmetric_key *skey);
     int saferp_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor saferp_desc;
@@ -713,9 +714,9 @@ version(LTC_SAFER)
     int safer_sk128_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int safer_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *key);
     int safer_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *key);
-    int safer_k64_test(void);
-    int safer_sk64_test(void);
-    int safer_sk128_test(void);
+    int safer_k64_test();
+    int safer_sk64_test();
+    int safer_sk128_test();
     void safer_done(symmetric_key *skey);
     int safer_64_keysize(int *keysize);
     int safer_128_keysize(int *keysize);
@@ -740,7 +741,7 @@ version(LTC_RIJNDAEL)
     int rijndael_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int rijndael_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int rijndael_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int rijndael_test(void);
+    int rijndael_test();
     void rijndael_done(symmetric_key *skey);
     int rijndael_keysize(int *keysize);
     int rijndael_enc_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
@@ -756,7 +757,7 @@ version(LTC_XTEA)
     int xtea_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int xtea_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int xtea_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int xtea_test(void);
+    int xtea_test();
     void xtea_done(symmetric_key *skey);
     int xtea_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor xtea_desc;
@@ -767,7 +768,7 @@ version(LTC_TWOFISH)
     int twofish_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int twofish_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int twofish_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int twofish_test(void);
+    int twofish_test();
     void twofish_done(symmetric_key *skey);
     int twofish_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor twofish_desc;
@@ -778,13 +779,13 @@ version(LTC_DES)
     int des_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int des_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int des_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int des_test(void);
+    int des_test();
     void des_done(symmetric_key *skey);
     int des_keysize(int *keysize);
     int des3_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int des3_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int des3_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int des3_test(void);
+    int des3_test();
     void des3_done(symmetric_key *skey);
     int des3_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor des_desc, des3_desc;
@@ -795,7 +796,7 @@ version(LTC_CAST5)
     int cast5_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int cast5_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int cast5_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int cast5_test(void);
+    int cast5_test();
     void cast5_done(symmetric_key *skey);
     int cast5_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor cast5_desc;
@@ -806,7 +807,7 @@ version(LTC_NOEKEON)
     int noekeon_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int noekeon_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int noekeon_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int noekeon_test(void);
+    int noekeon_test();
     void noekeon_done(symmetric_key *skey);
     int noekeon_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor noekeon_desc;
@@ -817,7 +818,7 @@ version(LTC_SKIPJACK)
     int skipjack_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int skipjack_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int skipjack_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int skipjack_test(void);
+    int skipjack_test();
     void skipjack_done(symmetric_key *skey);
     int skipjack_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor skipjack_desc;
@@ -828,7 +829,7 @@ version(LTC_KHAZAD)
     int khazad_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int khazad_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int khazad_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int khazad_test(void);
+    int khazad_test();
     void khazad_done(symmetric_key *skey);
     int khazad_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor khazad_desc;
@@ -839,7 +840,7 @@ version(LTC_ANUBIS)
     int anubis_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int anubis_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int anubis_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int anubis_test(void);
+    int anubis_test();
     void anubis_done(symmetric_key *skey);
     int anubis_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor anubis_desc;
@@ -850,7 +851,7 @@ version(LTC_KSEED)
     int kseed_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int kseed_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int kseed_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int kseed_test(void);
+    int kseed_test();
     void kseed_done(symmetric_key *skey);
     int kseed_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor kseed_desc;
@@ -861,7 +862,7 @@ version(LTC_KASUMI)
     int kasumi_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int kasumi_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int kasumi_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int kasumi_test(void);
+    int kasumi_test();
     void kasumi_done(symmetric_key *skey);
     int kasumi_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor kasumi_desc;
@@ -873,7 +874,7 @@ version(LTC_MULTI2)
     int multi2_setup(const ubyte *key, int keylen, int num_rounds, symmetric_key *skey);
     int multi2_ecb_encrypt(const ubyte *pt, ubyte *ct, symmetric_key *skey);
     int multi2_ecb_decrypt(const ubyte *ct, ubyte *pt, symmetric_key *skey);
-    int multi2_test(void);
+    int multi2_test();
     void multi2_done(symmetric_key *skey);
     int multi2_keysize(int *keysize);
     extern const __gshared ltc_cipher_descriptor multi2_desc;
@@ -940,7 +941,7 @@ version(LTC_CTR_MODE)
     int ctr_getiv(ubyte *IV, c_ulong *len, symmetric_CTR *ctr);
     int ctr_setiv(const ubyte *IV, c_ulong len, symmetric_CTR *ctr);
     int ctr_done(symmetric_CTR *ctr);
-    int ctr_test(void);
+    int ctr_test();
 }
 
 version(LTC_LRW_MODE)
@@ -961,7 +962,7 @@ version(LTC_LRW_MODE)
     int lrw_getiv(ubyte *IV, c_ulong *len, symmetric_LRW *lrw);
     int lrw_setiv(const ubyte *IV, c_ulong len, symmetric_LRW *lrw);
     int lrw_done(symmetric_LRW *lrw);
-    int lrw_test(void);
+    int lrw_test();
     
     /* don't call */
     int lrw_process(const ubyte *pt, ubyte *ct, c_ulong len, int mode, symmetric_LRW *lrw);
@@ -979,7 +980,7 @@ version(LTC_F8_MODE)
     int f8_getiv(ubyte *IV, c_ulong *len, symmetric_F8 *f8);
     int f8_setiv(const ubyte *IV, c_ulong len, symmetric_F8 *f8);
     int f8_done(symmetric_F8 *f8);
-    int f8_test_mode(void);
+    int f8_test_mode();
 }
 
 version(LTC_XTS_MODE)
@@ -1009,7 +1010,7 @@ version(LTC_XTS_MODE)
              symmetric_xts *xts);
     
     void xts_done(symmetric_xts *xts);
-    int  xts_test(void);
+    int  xts_test();
     void xts_mult_x(ubyte *I);
 }
 

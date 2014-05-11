@@ -2,6 +2,10 @@ module tomcrypt.mac;
 
 import core.stdc.config;
 
+import tomcrypt.tomcrypt;
+
+extern(C) nothrow:
+
 version(LTC_HMAC)
 {
     struct hmac_state 
@@ -293,7 +297,7 @@ version(LTC_GCM_MODE)
                            mode,         /* mode the GCM code is in */
                            buflen;       /* length of data in buf */
     
-       ulong64             totlen,       /* 64-bit counter used for IV and AAD */
+       ulong               totlen,       /* 64-bit counter used for IV and AAD */
                            pttotlen;     /* 64-bit counter for the PT */
     
         version(LTC_GCM_TABLES)
