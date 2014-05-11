@@ -41,20 +41,20 @@ struct ltc_math_descriptor
      @param   a     The number to initialize
      @return  CRYPT_OK on success
    */
-   int function(void **a) init;
+   int function(void **a) nothrow init;
    
    /** init copy 
      @param  dst    The number to initialize and write to
      @param  src    The number to copy from
      @return CRYPT_OK on success
    */
-   int function(void **dst, void *src) init_copy;
+   int function(void **dst, void *src) nothrow init_copy;
 
    /** deinit 
       @param   a    The number to free
       @return CRYPT_OK on success
    */
-   void function(void *a) deinit;
+   void function(void *a) nothrow deinit;
 
 /* ---- data movement ---- */
 
@@ -63,14 +63,14 @@ struct ltc_math_descriptor
       @param   dst   The destination
       @return CRYPT_OK on success
    */
-   int function(void *src, void *dst) neg;
+   int function(void *src, void *dst) nothrow neg;
    
    /** copy 
       @param   src   The number to copy from
       @param   dst   The number to write to 
       @return CRYPT_OK on success
    */
-   int function(void *src, void *dst) copy;
+   int function(void *src, void *dst) nothrow copy;
 
 /* ---- trivial low level functions ---- */
 
@@ -79,59 +79,59 @@ struct ltc_math_descriptor
       @param n    Source upto bits_per_digit (actually meant for very small constants) 
       @return CRYPT_OK on succcess
    */
-   int function(void *a, c_ulong n) set_int;
+   int function(void *a, c_ulong n) nothrow set_int;
 
    /** get small constant 
       @param a    Number to read, only fetches upto bits_per_digit from the number
       @return  The lower bits_per_digit of the integer (unsigned)
    */
-   c_ulong function(void *a) get_int;
+   c_ulong function(void *a) nothrow get_int;
 
    /** get digit n 
      @param a  The number to read from
      @param n  The number of the digit to fetch
      @return  The bits_per_digit  sized n'th digit of a
    */
-   c_ulong function(void *a, int n) get_digit;
+   c_ulong function(void *a, int n) nothrow get_digit;
 
    /** Get the number of digits that represent the number
      @param a   The number to count
      @return The number of digits used to represent the number
    */
-   int function(void *a) get_digit_count;
+   int function(void *a) nothrow get_digit_count;
 
    /** compare two integers
      @param a   The left side integer
      @param b   The right side integer
      @return LTC_MP_LT if a < b, LTC_MP_GT if a > b and LTC_MP_EQ otherwise.  (signed comparison)
    */
-   int function(void *a, void *b) compare;
+   int function(void *a, void *b) nothrow compare;
 
    /** compare against int 
      @param a   The left side integer
      @param b   The right side integer (upto bits_per_digit)
      @return LTC_MP_LT if a < b, LTC_MP_GT if a > b and LTC_MP_EQ otherwise.  (signed comparison)
    */
-   int function(void *a, c_ulong n) compare_d;
+   int function(void *a, c_ulong n) nothrow compare_d;
 
    /** Count the number of bits used to represent the integer
      @param a   The integer to count
      @return The number of bits required to represent the integer
    */
-   int function(void * a) count_bits;
+   int function(void * a) nothrow count_bits;
 
    /** Count the number of LSB bits which are zero 
      @param a   The integer to count
      @return The number of contiguous zero LSB bits
    */
-   int function(void *a) count_lsb_bits;
+   int function(void *a) nothrow count_lsb_bits;
 
    /** Compute a power of two
      @param a  The integer to store the power in
      @param n  The power of two you want to store (a = 2^n)
      @return CRYPT_OK on success
    */
-   int function(void *a , int n) twoexpt;
+   int function(void *a , int n) nothrow twoexpt;
 
 /* ---- radix conversions ---- */
    
@@ -141,7 +141,7 @@ struct ltc_math_descriptor
      @param radix The radix the integer has been represented in (2-64)
      @return CRYPT_OK on success
    */
-   int function(void *a, const char *str, int radix) read_radix;
+   int function(void *a, const char *str, int radix) nothrow read_radix;
 
    /** write number to string
      @param a     The integer to store
@@ -149,20 +149,20 @@ struct ltc_math_descriptor
      @param radix The radix the integer is to be represented in (2-64)
      @return CRYPT_OK on success
    */
-   int function(void *a, char *str, int radix) write_radix;
+   int function(void *a, char *str, int radix) nothrow write_radix;
 
    /** get size as unsigned char string 
      @param a     The integer to get the size (when stored in array of octets)
      @return The length of the integer
    */
-   c_ulong function(void *a) unsigned_size;
+   c_ulong function(void *a) nothrow unsigned_size;
 
    /** store an integer as an array of octets 
      @param src   The integer to store
      @param dst   The buffer to store the integer in
      @return CRYPT_OK on success
    */
-   int function(void *src, ubyte* dst) unsigned_write;
+   int function(void *src, ubyte* dst) nothrow unsigned_write;
 
    /** read an array of octets and store as integer
      @param dst   The integer to load
@@ -170,7 +170,7 @@ struct ltc_math_descriptor
      @param len   The number of octets 
      @return CRYPT_OK on success
    */
-   int function(void *dst, ubyte* src, c_ulong len) unsigned_read;
+   int function(void *dst, ubyte* src, c_ulong len) nothrow unsigned_read;
 
 /* ---- basic math ---- */
 
@@ -180,7 +180,7 @@ struct ltc_math_descriptor
      @param c   The destination of "a + b"
      @return CRYPT_OK on success
    */
-   int function(void *a, void *b, void *c) add;
+   int function(void *a, void *b, void *c) nothrow add;
 
 
    /** add two integers 
@@ -189,7 +189,7 @@ struct ltc_math_descriptor
      @param c   The destination of "a + b"
      @return CRYPT_OK on success
    */
-   int function(void *a, c_ulong b, void *c) addi;
+   int function(void *a, c_ulong b, void *c) nothrow addi;
 
    /** subtract two integers 
      @param a   The first source integer
@@ -197,7 +197,7 @@ struct ltc_math_descriptor
      @param c   The destination of "a - b"
      @return CRYPT_OK on success
    */
-   int function(void *a, void *b, void *c) sub;
+   int function(void *a, void *b, void *c) nothrow sub;
 
    /** subtract two integers 
      @param a   The first source integer
@@ -205,7 +205,7 @@ struct ltc_math_descriptor
      @param c   The destination of "a - b"
      @return CRYPT_OK on success
    */
-   int function(void *a, c_ulong b, void *c) subi;
+   int function(void *a, c_ulong b, void *c) nothrow subi;
 
    /** multiply two integers 
      @param a   The first source integer
@@ -213,7 +213,7 @@ struct ltc_math_descriptor
      @param c   The destination of "a * b"
      @return CRYPT_OK on success
    */
-   int function(void *a, void *b, void *c) mul;
+   int function(void *a, void *b, void *c) nothrow mul;
 
    /** multiply two integers 
      @param a   The first source integer
@@ -221,14 +221,14 @@ struct ltc_math_descriptor
      @param c   The destination of "a * b"
      @return CRYPT_OK on success
    */
-   int function(void *a, c_ulong b, void *c) muli;
+   int function(void *a, c_ulong b, void *c) nothrow muli;
 
    /** Square an integer
      @param a    The integer to square
      @param b    The destination
      @return CRYPT_OK on success
    */
-   int function(void *a, void *b) sqr;
+   int function(void *a, void *b) nothrow sqr;
 
    /** Divide an integer
      @param a    The dividend
@@ -237,14 +237,14 @@ struct ltc_math_descriptor
      @param d    The remainder (can be NULL to signify don't care)
      @return CRYPT_OK on success
    */
-   int function(void *a, void *b, void *c, void *d) mpdiv;
+   int function(void *a, void *b, void *c, void *d) nothrow mpdiv;
 
    /** divide by two 
       @param  a   The integer to divide (shift right)
       @param  b   The destination 
       @return CRYPT_OK on success
    */
-   int function(void *a, void *b) div_2;
+   int function(void *a, void *b) nothrow div_2;
 
    /** Get remainder (small value)
       @param  a    The integer to reduce
@@ -252,7 +252,7 @@ struct ltc_math_descriptor
       @param  c    The destination for the residue
       @return CRYPT_OK on success
    */
-   int function(void *a, c_ulong b, c_ulong *c) modi;
+   int function(void *a, c_ulong b, c_ulong *c) nothrow modi;
 
    /** gcd 
       @param  a     The first integer
@@ -260,7 +260,7 @@ struct ltc_math_descriptor
       @param  c     The destination for (a, b)
       @return CRYPT_OK on success
    */
-   int function(void *a, void *b, void *c) gcd;
+   int function(void *a, void *b, void *c) nothrow gcd;
 
    /** lcm 
       @param  a     The first integer
@@ -268,7 +268,7 @@ struct ltc_math_descriptor
       @param  c     The destination for [a, b]
       @return CRYPT_OK on success
    */
-   int function(void *a, void *b, void *c) lcm;
+   int function(void *a, void *b, void *c) nothrow lcm;
 
    /** Modular multiplication
       @param  a     The first source
@@ -277,7 +277,7 @@ struct ltc_math_descriptor
       @param  d     The destination (a*b mod c)
       @return CRYPT_OK on success
    */
-   int function(void *a, void *b, void *c, void *d) mulmod;
+   int function(void *a, void *b, void *c, void *d) nothrow mulmod;
 
    /** Modular squaring
       @param  a     The first source
@@ -285,7 +285,7 @@ struct ltc_math_descriptor
       @param  c     The destination (a*a mod b)
       @return CRYPT_OK on success
    */
-   int function(void *a, void *b, void *c) sqrmod;
+   int function(void *a, void *b, void *c) nothrow sqrmod;
 
    /** Modular inversion
       @param  a     The value to invert
@@ -293,7 +293,7 @@ struct ltc_math_descriptor
       @param  c     The destination (1/a mod b)
       @return CRYPT_OK on success
    */
-   int function(void *, void *, void *) invmod;
+   int function(void *, void *, void *) nothrow invmod;
 
 /* ---- reduction ---- */
 
@@ -302,14 +302,14 @@ struct ltc_math_descriptor
        @param b  The destination for the reduction digit 
        @return CRYPT_OK on success
    */
-   int function(void *a, void **b) montgomery_setup;
+   int function(void *a, void **b) nothrow montgomery_setup;
 
    /** get normalization value 
        @param a   The destination for the normalization value
        @param b   The modulus
        @return  CRYPT_OK on success
    */
-   int function(void *a, void *b) montgomery_normalization;
+   int function(void *a, void *b) nothrow montgomery_normalization;
 
    /** reduce a number
        @param a   The number [and dest] to reduce
@@ -317,13 +317,13 @@ struct ltc_math_descriptor
        @param c   The value "b" from montgomery_setup()
        @return CRYPT_OK on success
    */
-   int function(void *a, void *b, void *c) montgomery_reduce;
+   int function(void *a, void *b, void *c) nothrow montgomery_reduce;
 
    /** clean up  (frees memory)
        @param a   The value "b" from montgomery_setup()
        @return CRYPT_OK on success
    */      
-   void function(void *a) montgomery_deinit;
+   void function(void *a) nothrow montgomery_deinit;
 
 /* ---- exponentiation ---- */
 
@@ -334,14 +334,14 @@ struct ltc_math_descriptor
        @param d    The destination
        @return CRYPT_OK on success
    */
-   int function(void *a, void *b, void *c, void *d) exptmod;
+   int function(void *a, void *b, void *c, void *d) nothrow exptmod;
 
    /** Primality testing
        @param a     The integer to test
        @param b     The destination of the result (FP_YES if prime)
        @return CRYPT_OK on success
    */
-   int function(void *a, int *b) isprime;
+   int function(void *a, int *b) nothrow isprime;
 
 /* ----  (optional) ecc point math ---- */
 
@@ -353,7 +353,7 @@ struct ltc_math_descriptor
        @param map Boolean indicated whether to map back to affine or not (can be ignored if you work in affine only)
        @return CRYPT_OK on success
    */
-   int function(void *k, ecc_point *G, ecc_point *R, void *modulus, int map) ecc_ptmul;
+   int function(void *k, ecc_point *G, ecc_point *R, void *modulus, int map) nothrow ecc_ptmul;
 
    /** ECC GF(p) point addition 
        @param P    The first point
@@ -363,7 +363,7 @@ struct ltc_math_descriptor
        @param mp   The "b" value from montgomery_setup()
        @return CRYPT_OK on success
    */
-   int function(ecc_point *P, ecc_point *Q, ecc_point *R, void *modulus, void *mp) ecc_ptadd;
+   int function(ecc_point *P, ecc_point *Q, ecc_point *R, void *modulus, void *mp) nothrow ecc_ptadd;
 
    /** ECC GF(p) point double 
        @param P    The first point
@@ -372,7 +372,7 @@ struct ltc_math_descriptor
        @param mp   The "b" value from montgomery_setup()
        @return CRYPT_OK on success
    */
-   int function(ecc_point *P, ecc_point *R, void *modulus, void *mp) ecc_ptdbl;
+   int function(ecc_point *P, ecc_point *R, void *modulus, void *mp) nothrow ecc_ptdbl;
 
    /** ECC mapping from projective to affine, currently uses (x,y,z) => (x/z^2, y/z^3, 1)
        @param P     The point to map
@@ -382,7 +382,7 @@ struct ltc_math_descriptor
        @remark  The mapping can be different but keep in mind a ecc_point only has three 
                 integers (x,y,z) so if you use a different mapping you have to make it fit.
    */
-   int function(ecc_point *P, void *modulus, void *mp) ecc_map;
+   int function(ecc_point *P, void *modulus, void *mp) nothrow ecc_map;
 
    /** Computes kA*A + kB*B = C using Shamir's Trick
        @param A        First point to multiply
@@ -396,7 +396,7 @@ struct ltc_math_descriptor
    int function(ecc_point *A, void *kA,
            ecc_point *B, void *kB,
            ecc_point *C,
-           void *modulus) ecc_mul2add;
+           void *modulus) nothrow ecc_mul2add;
 
 /* ---- (optional) rsa optimized math (for internal CRT) ---- */
 
@@ -408,7 +408,7 @@ struct ltc_math_descriptor
        @param key      [out] Destination of a newly created private key pair
        @return CRYPT_OK if successful, upon error all allocated ram is freed
     */
-    int function(prng_state *prng, int wprng, int size, long e, rsa_key *key) rsa_keygen;
+    int function(prng_state *prng, int wprng, int size, long e, rsa_key *key) nothrow rsa_keygen;
    
 
    /** RSA exponentiation
@@ -422,7 +422,7 @@ struct ltc_math_descriptor
    */
    int function(const ubyte* _in,   c_ulong inlen,
                        ubyte* _out,  c_ulong *outlen, int which,
-                       rsa_key *key) rsa_me;
+                       rsa_key *key) nothrow rsa_me;
 }
 
 extern __gshared ltc_math_descriptor ltc_mp;
@@ -452,65 +452,64 @@ else version(LTC_SOURCE)
     alias MP_DIGIT_BIT                 = ltc_mp.bits_per_digit;
     
     /* some handy macros */
-    alias mp_init                      = ltc_mp.init;
-    alias mp_init_multi                = ltc_init_multi;
-    alias mp_clear                     = ltc_mp.deinit;
-    alias mp_clear_multi               = ltc_deinit_multi;
-    alias mp_init_copy                 = ltc_mp.init_copy;
+    int mp_init(void **a)                   { return ltc_mp.init(a); }
+    alias mp_init_multi                     = ltc_init_multi;
+    void mp_clear(void *a)                  { ltc_mp.deinit(a); }
+    alias mp_clear_multi                    = ltc_deinit_multi;
+    int mp_init_copy(void **dst, void *src) { return ltc_mp.init_copy(dst, src); }
     
-    alias mp_neg                       = ltc_mp.neg;
-    alias mp_copy                      = ltc_mp.copy;
+    int mp_neg(void *src, void *dst)   { return ltc_mp.neg(src, dst); }
+    int mp_copy(void *src, void *dst)  { return ltc_mp.copy(src, dst); }
     
-    alias mp_set                       = ltc_mp.set_int;
-    alias mp_set_int                   = ltc_mp.set_int;
-    alias mp_get_int                   = ltc_mp.get_int;
-    alias mp_get_digit                 = ltc_mp.get_digit;
-    alias mp_get_digit_count           = ltc_mp.get_digit_count;
-    alias mp_cmp                       = ltc_mp.compare;
-    alias mp_cmp_d                     = ltc_mp.compare_d;
-    alias mp_count_bits                = ltc_mp.count_bits;
-    alias mp_cnt_lsb                   = ltc_mp.count_lsb_bits;
-    alias mp_2expt                     = ltc_mp.twoexpt;
+    int mp_set(void *a, c_ulong n)     { return ltc_mp.set_int(a, n); } 
+    alias mp_set_int                   = mp_set;
     
-    alias mp_read_radix                = ltc_mp.read_radix;
-    alias mp_toradix                   = ltc_mp.write_radix;
-    alias mp_unsigned_bin_size         = ltc_mp.unsigned_size;
-    alias mp_to_unsigned_bin           = ltc_mp.unsigned_write;
-    alias mp_read_unsigned_bin         = ltc_mp.unsigned_read;
+    c_ulong mp_get_int(void *a)          { return ltc_mp.get_int(a); } 
+    c_ulong mp_get_digit(void *a, int n) { return ltc_mp.get_digit(a, n); }
+    int mp_get_digit_count(void *a)      { return ltc_mp.get_digit_count(a); }
+    int mp_cmp(void *a, void *b)         { return ltc_mp.compare(a, b); }
+    int mp_cmp_d(void *a, c_ulong n)       { return ltc_mp.compare_d(a, n); }
+    int mp_count_bits(void * a)          { return ltc_mp.count_bits(a); }
+    int mp_cnt_lsb(void *a)              { return ltc_mp.count_lsb_bits(a); }
+    int mp_2expt(void *a , int n)        { return ltc_mp.twoexpt(a, n); }
+
+    int mp_read_radix(void *a, const char *str, int radix)       { return ltc_mp.read_radix(a, str, radix); }
+    int mp_toradix(void *a, char *str, int radix)                { return ltc_mp.write_radix(a, str, radix); }
+    c_ulong mp_unsigned_bin_size(void *a)                        { return ltc_mp.unsigned_size(a); }
+    int mp_to_unsigned_bin(void *src, ubyte* dst)                { return ltc_mp.unsigned_write(src, dst); }
+    int mp_read_unsigned_bin(void *dst, ubyte* src, c_ulong len) { return ltc_mp.unsigned_read(dst, src, len); }
+   
+    int mp_add(void *a, void *b, void *c)               { return ltc_mp.add(a, b, c); }
+    int mp_add_d(void *a, c_ulong b, void *c)           { return ltc_mp.addi(a, b, c); }
+    int mp_sub(void *a, void *b, void *c)               { return ltc_mp.sub(a, b, c); }
+    int mp_sub_d(void *a, c_ulong b, void *c)           { return ltc_mp.subi(a, b, c); }
+    int mp_mul(void *a, void *b, void *c)               { return ltc_mp.mul(a, b, c); }
+    int mp_mul_d(void *a, c_ulong b, void *c)           { return ltc_mp.muli(a, b, c); }
+    int mp_sqr(void *a, void *b)                        { return ltc_mp.sqr(a, b); }
+    int mp_div(void *a, void *b, void *c, void *d)      { return ltc_mp.mpdiv(a, b, c, d); }
+    int mp_div_2(void *a, void *b)                      { return ltc_mp.div_2(a, b); }
+    int mp_mod(void *a, void *b, void *c)               { return ltc_mp.mpdiv(a, b, null, c);} 
+    int mp_mod_d(void *a, c_ulong b, c_ulong *c)        { return ltc_mp.modi(a, b, c); }
+    int mp_gcd(void *a, void *b, void *c)               { return ltc_mp.gcd(a, b, c); }
+    int mp_lcm(void *a, void *b, void *c)               { return ltc_mp.lcm(a, b, c); }
     
-    alias mp_add                       = ltc_mp.add;
-    alias mp_add_d                     = ltc_mp.addi;
-    alias mp_sub                       = ltc_mp.sub;
-    alias mp_sub_d                     = ltc_mp.subi;
-    alias mp_mul                       = ltc_mp.mul;
-    alias mp_mul_d                     = ltc_mp.muli;
-    alias mp_sqr                       = ltc_mp.sqr;
-    alias mp_div                       = ltc_mp.mpdiv;
-    alias mp_div_2                     = ltc_mp.div_2;
+    int mp_mulmod(void *a, void *b, void *c, void *d)   { return ltc_mp.mulmod(a, b, c, d); }
+    int mp_sqrmod(void *a, void *b, void *c)            { return ltc_mp.sqrmod(a, b, c); }
+    int mp_invmod(void *a, void *b, void *c)            { return ltc_mp.invmod(a, b, c); }
     
-    int mp_mod(void *a, void *b, void *c) {return ltc_mp.mpdiv(a, b, null, c);}
+    int mp_montgomery_setup(void *a, void **b)          { return ltc_mp.montgomery_setup(a, b);}
+    int mp_montgomery_normalization(void *a, void *b)   { return ltc_mp.montgomery_normalization(a, b);}
+    int mp_montgomery_reduce(void *a, void *b, void *c) { return ltc_mp.montgomery_reduce(a, b, c);}   
+    void mp_montgomery_free(void *a)                    { return ltc_mp.montgomery_deinit(a);}
     
-    alias mp_mod_d                     = ltc_mp.modi;
-    alias mp_gcd                       = ltc_mp.gcd;
-    alias mp_lcm                       = ltc_mp.lcm;
-    
-    alias mp_mulmod                    = ltc_mp.mulmod;
-    alias mp_sqrmod                    = ltc_mp.sqrmod;
-    alias mp_invmod                    = ltc_mp.invmod;
-    
-    alias mp_montgomery_setup             = ltc_mp.montgomery_setup;
-    alias mp_montgomery_normalization     = ltc_mp.montgomery_normalization;
-    alias mp_montgomery_reduce            = ltc_mp.montgomery_reduce;
-    alias mp_montgomery_free              = ltc_mp.montgomery_deinit;
-    
-    alias mp_exptmod                   = ltc_mp.exptmod;
-    alias mp_prime_is_prime            = ltc_mp.isprime;
+    int mp_exptmod(void *a, void *b, void *c, void *d)  { return ltc_mp.exptmod(a, b, c, d);}
+    int mp_prime_is_prime(void *a, int *b)              { return ltc_mp.isprime(a, b);}
     
     bool mp_iszero(void* a)           {return (mp_cmp_d(a, 0) == LTC_MP_EQ ? LTC_MP_YES : LTC_MP_NO);}
-    bool mp_isodd(void *a)            {return (mp_get_digit_count > 0 ? (mp_get_digit(a, 0) & 1 ? LTC_MP_YES : LTC_MP_NO) : LTC_MP_NO);}
+    bool mp_isodd(void *a)            {return (mp_get_digit_count(a) > 0 ? (mp_get_digit(a, 0) & 1 ? LTC_MP_YES : LTC_MP_NO) : LTC_MP_NO);}
     void mp_exch(T)(T a, T b)         {void *ABC__tmp = a; a = b; b = ABC__tmp;}
     
-    int mp_tohex(void *a, char *str) {return mp_toradix(a, b, 16);}
+    int mp_tohex(void *a, char *str) {return mp_toradix(a, str, 16);}
 }
 
 /* $Source: /cvs/libtom/libtomcrypt/src/headers/tomcrypt_math.h,v $ */
