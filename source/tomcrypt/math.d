@@ -3,6 +3,7 @@ module tomcrypt.math;
 
 import core.stdc.config;
 import tomcrypt.prng;
+import tomcrypt.pk;
 
 extern(C) nothrow:
 
