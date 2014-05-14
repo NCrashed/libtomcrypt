@@ -70,5 +70,6 @@
 	            , "LTC_ECC_SHAMIR"
 	            , "LTC_MDSA"
 	            , "LTC_PKCS_1"
-	            , "LTC_PKCS_5"]
+	            , "LTC_PKCS_5"
+	            , "LTM_DESC"]
 }
