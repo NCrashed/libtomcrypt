@@ -111,8 +111,8 @@ version(LTC_SAFER)
     enum LTC_SAFER_MAX_NOF_ROUNDS             = 13;
     enum LTC_SAFER_BLOCK_LEN                  = 8;
     enum LTC_SAFER_KEY_LEN    = (1 + LTC_SAFER_BLOCK_LEN * (1 + 2 * LTC_SAFER_MAX_NOF_ROUNDS));
-    alias ubyte safer_block_t[LTC_SAFER_BLOCK_LEN];
-    alias ubyte safer_key_t[LTC_SAFER_KEY_LEN];
+    alias ubyte[LTC_SAFER_BLOCK_LEN] safer_block_t;
+    alias ubyte[LTC_SAFER_KEY_LEN] safer_key_t;
     struct safer_key { safer_key_t key; };
 }
 
