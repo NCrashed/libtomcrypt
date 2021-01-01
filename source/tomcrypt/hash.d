@@ -152,7 +152,7 @@ version(LTC_CHC_HASH)
 
 union hash_state 
 {
-    char dummy[1];
+    char[1] dummy;
     version(LTC_CHC_HASH)
     {
         chc_state chc;
@@ -233,7 +233,7 @@ struct ltc_hash_descriptor
     /** Input block size in octets */
     c_ulong blocksize;
     /** ASN.1 OID */
-    c_ulong OID[16];
+    c_ulong[16] OID;
     /** Length of DER encoding */
     c_ulong OIDlen;
 

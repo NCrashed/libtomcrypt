@@ -18,7 +18,7 @@ version(LTC_BASE64)
 void zeromem(void *dst, size_t len);
 void burn_stack(c_ulong len);
 
-const char *error_to_string(int err);
+const(char*) error_to_string(int err);
 
 extern const __gshared char *crypt_build_settings;
 
